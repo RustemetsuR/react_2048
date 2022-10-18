@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.board{
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+  background: #bbada0;
+  text-align: center;
+}
+
+.row-block{
+  display: flex;
+  margin-bottom: 15px;
+  height: 25%;
+}
+
