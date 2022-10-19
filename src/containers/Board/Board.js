@@ -1,63 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import "./Board.css";
 import Tile from "../../components/Tile/Tile";
+import Container from "../../components/Container/Container";
 
 const Board = () => {
     const emptyBoard = [[0, 0, 0, 0],
-                        [0, 0, 0, 0],
-                        [0, 0, 0, 0],
-                        [0, 0, 0, 0]];
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]];
     const [board, setBoard] = useState(emptyBoard);
-    
     let keyDetection = false;
 
     useEffect(() => {
-        for (let i = 0; i < 2; i++) {
-            spawnNumber();
-        };
-
+        initializeBoard();
         document.addEventListener('keydown', moveTiles, true);
         document.addEventListener('keyup', blockKeyDetection, true);
     }, []);
 
     const moveTiles = event => {
-        if(!keyDetection){
+        if (!keyDetection) {
             keyDetection = true;
             const key = event.key.toLowerCase();
             const newBoard = [...board];
             const oldBoard = newBoard.map(item => ([...item]));
-            if (key === "w" || key === "arrowup") {
-                for (let i = 0; i < 4; i++) {
+            if (key === "r") {
+                initializeBoard();
+            } else {
+                if (key === "w" || key === "arrowup") {
+                    for (let i = 0; i < 4; i++) {
+                        moveUp(newBoard);
+                    }
+                    combineUp(newBoard);
                     moveUp(newBoard);
-                }
-                combineUp(newBoard);
-                moveUp(newBoard);
-            } else if (key === "a" || key === "arrowleft") {
-                for (let i = 0; i < 4; i++) {
+                } else if (key === "a" || key === "arrowleft") {
+                    for (let i = 0; i < 4; i++) {
+                        moveLeft(newBoard);
+                    }
+                    combineLeft(newBoard);
                     moveLeft(newBoard);
-                }
-                combineLeft(newBoard);
-                moveLeft(newBoard);
-            } else if (key === "s" || key === "arrowdown") {
-                for (let i = 0; i < 4; i++) {
+                } else if (key === "s" || key === "arrowdown") {
+                    for (let i = 0; i < 4; i++) {
+                        moveDown(newBoard);
+                    }
+                    combineDown(newBoard);
                     moveDown(newBoard);
-                }
-                combineDown(newBoard);
-                moveDown(newBoard);
-            } else if (key === "d" || key === "arrowright") {
-                for (let i = 0; i < 4; i++) {
+                } else if (key === "d" || key === "arrowright") {
+                    for (let i = 0; i < 4; i++) {
+                        moveRight(newBoard);
+                    }
+                    combineRight(newBoard);
                     moveRight(newBoard);
                 }
-                combineRight(newBoard);
-                moveRight(newBoard);
-            }
-            setBoard(newBoard);
-            if (!equals(board, oldBoard)) {
-                spawnNumber();
+                setBoard(newBoard);
+                if (!equals(board, oldBoard)) {
+                    spawnNumber();
+                }
             }
         }
     }
-    
+
+    const initializeBoard = () => {
+        const newBoard = [...board];
+        for (let i = 0; i < newBoard.length; i++) {
+            for (let j = 0; j < newBoard.length; j++) {
+                newBoard[i][j] = 0;
+            }
+        }
+
+        let i = 2;
+        while (i !== 0) {
+            const row = Math.floor(Math.random() * 4);
+            const col = Math.floor(Math.random() * 4);
+            if (newBoard[row][col] === 0) {
+                const chanceOfNum = Math.floor(Math.random() * 10);
+                if (chanceOfNum === 0) {
+                    newBoard[row][col] = 4;
+                } else {
+                    newBoard[row][col] = 2;
+                }
+                i--;
+            }
+        }
+
+        setBoard(newBoard);
+    }
+
     const blockKeyDetection = () => {
         keyDetection = false;
     }
@@ -164,17 +191,27 @@ const Board = () => {
     }
 
     return (
-        <div className="board">
-            {board.map((boardElement, boardIndex) => {
-                return <div key={boardIndex + "" + boardElement} className="row-block">
-                    {boardElement.map((el, index) => {
-                        return <Tile key={index + "" + boardIndex}
-                            index={index}
-                            number={el}
-                        />
+        <div className="board-block">
+            <Container>
+                <div className="board-interface">
+                    <button className="board-interface__reset-button" onClick={() => initializeBoard()}>
+                        <img src={require("../../svg/icons8-restart-58.png")} />
+                    </button>
+                </div>
+
+                <div className="board-game">
+                    {board.map((boardElement, boardIndex) => {
+                        return <div key={boardIndex + "" + boardElement} className="row-block">
+                            {boardElement.map((el, index) => {
+                                return <Tile key={index + "" + boardIndex}
+                                    index={index}
+                                    number={el}
+                                />
+                            })}
+                        </div>
                     })}
                 </div>
-            })}
+            </Container>
         </div>
     );
 };

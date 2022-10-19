@@ -1,78 +1,104 @@
-.number-block{
-    width: 25%;
-    height: 100%;
-    margin-right: 15px;
-    background: rgba(238, 228, 218, 0.35);
-    font-weight: bold;
-    animation: appear 200ms ease 100ms;
-    animation-fill-mode: backwards;
+.number-block {
+  width: 25%;
+  height: 100%;
+  margin-right: 15px;
+  background: rgba(238, 228, 218, 0.35);
+  font-weight: bold;
+  animation: appear 200ms ease 100ms;
+  animation-fill-mode: backwards;
+  border-radius: 4px;
+}
+
+.number {
+  font-size: 45px;
+  margin: 0;
+  height: 81.25px;
+  line-height: 81.25px;
+  text-align: center;
+  color: #f9f6f2;
+  animation: appear 200ms ease 100ms;
+  animation-fill-mode: backwards;
+  transition: all 0.3s ease-in-out;
+}
+
+.number-block-2 {
+  background: #eee4da;
+}
+
+.number-block-2 .number,
+.number-block-4 .number {
+  color: #776e65;
+}
+
+.number-block-2 .number,
+.number-block-4 .number,
+.number-block-8 .number,
+.number-block-16 .number,
+.number-block-32 .number,
+.number-block-64 .number {
+  font-size: 55px;
+}
+
+.number.spawned {
+  font-size: 0px;
+  height: 0px;
+  line-height: 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+.number-block-4 {
+  background: #eee1c9;
+}
+
+.number-block-8 {
+  background: #f3b27a;
+}
+
+.number-block-16 {
+  background: #f69664;
+}
+
+.number-block-32 {
+  background: #f77c5f;
+}
+
+.number-block-64 {
+  background: #f75f3b;
+}
+
+.number-block-128 {
+  background: #edd073;
+}
+
+.number-block-256 {
+  background: #edcc62;
+}
+
+.number-block-512 {
+  background: #edc950;
+}
+
+.number-block-1024 {
+  background: #edc53f;
+}
+
+.number-block-2048 {
+  background: #EEC844;
+}
+
+@media(max-width: 600px) {
+  .number {
+    height: 57.5px;
+    line-height: 57.5px;
+    font-size: 25px;
   }
-  
-  .number{
-    font-size: 45px;
-    margin: 0;
-    height: 107px;
-    line-height: 107px;
-    text-align: center;
-    color: #f9f6f2;
-  }
-  
-  .number-block-2{
-    background: #eee4da;
-  }
-  
-  .number-block-2 .number,
-  .number-block-4 .number
-  {
-    color: #776e65;
-  }
-  
+
   .number-block-2 .number,
   .number-block-4 .number,
   .number-block-8 .number,
   .number-block-16 .number,
   .number-block-32 .number,
-  .number-block-64 .number
-  {
-    font-size: 55px;
+  .number-block-64 .number {
+    font-size: 35px;
   }
-  
-  .number-block-4{
-    background: #eee1c9;
-  }
-  
-  .number-block-8{
-    background: #f3b27a;
-  }
-  
-  .number-block-16{
-    background: #f69664;
-  }
-  
-  .number-block-32{
-    background: #f77c5f;
-  }
-  
-  .number-block-64{
-    background: #f75f3b;
-  }
-  
-  .number-block-128{
-    background: #edd073;
-  }
-  
-  .number-block-256{
-    background: #edcc62;
-  }
-  
-  .number-block-512{
-    background: #edc950;
-  }
-  
-  .number-block-1024{
-    background: #edc53f;
-  }
-  
-  .number-block-2048{
-    background: #EEC844;
-  }
+}

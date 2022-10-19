@@ -1,15 +1,36 @@
-.board{
-    width: 500px;
+.board-block{
+  flex: 1 1 auto;
+  min-height: 80vh;
+}
+
+.board-game{
+    width: 400px;
     display: block;
-    margin: 0 auto;
     padding: 15px;
     background: #bbada0;
     text-align: center;
+    border-radius: 4px;
   }
+  
   
   .row-block{
     display: flex;
     margin-bottom: 15px;
     height: 25%;
   }
-  
+
+  .row-block:nth-child(4){
+    margin-bottom: 0;
+  }
+
+  .board-interface__reset-button{
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+@media(max-width: 600px){
+  .board-game{
+    width: 305px;
+  }
+}
