@@ -1,0 +1,28 @@
+.board-interface{
+    text-align: right;
+    margin: 15px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .board-score-block{
+    display: flex;
+    flex-grow: 1;
+   }
+  
+  .board-interface__reset-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .board-interface__reset-img{
+    transition: all 0.5s ease-in-out;
+    width: 50px;
+    border-radius: 50%;
+    background: #f6b94c;
+    padding: 10px;
+  }
