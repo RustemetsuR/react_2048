@@ -1,13 +1,14 @@
 import React from 'react';
 import "./App.css";
-import Header from './components/Header/Header';
+import Layout from './components/Layout/Layout';
 import Board from "./containers/Board/Board";
 
 const App = () => {
     return (
         <div className="App">
-            <Header />
-            <Board />
+            <Layout>
+                <Board />
+            </Layout>
         </div>
     );
 };
