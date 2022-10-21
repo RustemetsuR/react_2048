@@ -4,10 +4,48 @@
   margin-right: 15px;
   background: rgba(238, 228, 218, 0.35);
   font-weight: bold;
-  animation: appear 200ms ease 100ms;
-  animation-fill-mode: backwards;
   border-radius: 4px;
 }
+
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 
 .number {
   font-size: 45px;
@@ -16,9 +54,7 @@
   line-height: 81.25px;
   text-align: center;
   color: #f9f6f2;
-  animation: appear 200ms ease 100ms;
-  animation-fill-mode: backwards;
-  transition: all 0.3s ease-in-out;
+  user-select: none;
 }
 
 .number-block-2 {
@@ -39,11 +75,9 @@
   font-size: 55px;
 }
 
-.number.spawned {
-  font-size: 0px;
-  height: 0px;
-  line-height: 0px;
-  transition: all 0.3s ease-in-out;
+.number-block-1028 .number,
+.number-block-2048 .number {
+  font-size: 35px;
 }
 
 .number-block-4 {
@@ -83,8 +117,9 @@
 }
 
 .number-block-2048 {
-  background: #EEC844;
+  background: #f6b94c;
 }
+
 
 @media(max-width: 600px) {
   .number {
@@ -100,5 +135,10 @@
   .number-block-32 .number,
   .number-block-64 .number {
     font-size: 35px;
+  }
+
+  .number-block-1024 .number,
+  .number-block-2048 .number {
+    font-size: 25px;
   }
 }
