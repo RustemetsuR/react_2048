@@ -1,36 +1,31 @@
-.board-block{
-  flex: 1 1 auto;
-  min-height: 80vh;
+.board-block__inner{
+  margin: 0 auto;
+  width: 400px;
 }
 
-.board-game{
-    width: 400px;
-    display: block;
-    padding: 15px;
-    background: #bbada0;
-    text-align: center;
-    border-radius: 4px;
-  }
-  
-  
-  .row-block{
-    display: flex;
-    margin-bottom: 15px;
-    height: 25%;
-  }
+.board-game {
+  width: 100%;
+  display: block;
+  padding: 15px;
+  background: #bbada0;
+  text-align: center;
+  border-radius: 4px;
+  margin: 15px auto 0;
+  position: relative;
+}
 
-  .row-block:nth-child(4){
-    margin-bottom: 0;
-  }
+.row-block {
+  display: flex;
+  margin-bottom: 15px;
+  height: 25%;
+}
 
-  .board-interface__reset-button{
-    background: none;
-    border: none;
-    outline: none;
-  }
+.row-block:nth-child(4) {
+  margin-bottom: 0;
+}
 
-@media(max-width: 600px){
-  .board-game{
+@media(max-width: 600px) {
+  .board-block__inner {
     width: 305px;
   }
 }
