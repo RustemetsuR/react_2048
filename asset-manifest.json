@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/zeon_project_3/static/css/main.693c4a58.css",
+    "main.css": "/zeon_project_3/static/css/main.efeb8a00.css",
     "main.js": "/zeon_project_3/static/js/main.53bd2161.js",
     "static/js/787.29c7b148.chunk.js": "/zeon_project_3/static/js/787.29c7b148.chunk.js",
     "static/media/spin-svgrepo-com.svg": "/zeon_project_3/static/media/spin-svgrepo-com.0dbc03af4a3c1b3439373f4a98572dd2.svg",
     "index.html": "/zeon_project_3/index.html",
-    "main.693c4a58.css.map": "/zeon_project_3/static/css/main.693c4a58.css.map",
+    "main.efeb8a00.css.map": "/zeon_project_3/static/css/main.efeb8a00.css.map",
     "main.53bd2161.js.map": "/zeon_project_3/static/js/main.53bd2161.js.map",
     "787.29c7b148.chunk.js.map": "/zeon_project_3/static/js/787.29c7b148.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.693c4a58.css",
+    "static/css/main.efeb8a00.css",
     "static/js/main.53bd2161.js"
   ]
 }
