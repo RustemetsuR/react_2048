@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/zeon_project_3/static/css/main.efeb8a00.css",
-    "main.js": "/zeon_project_3/static/js/main.53bd2161.js",
+    "main.css": "/zeon_project_3/static/css/main.70ea934e.css",
+    "main.js": "/zeon_project_3/static/js/main.413a8d7e.js",
     "static/js/787.29c7b148.chunk.js": "/zeon_project_3/static/js/787.29c7b148.chunk.js",
     "static/media/spin-svgrepo-com.svg": "/zeon_project_3/static/media/spin-svgrepo-com.0dbc03af4a3c1b3439373f4a98572dd2.svg",
     "index.html": "/zeon_project_3/index.html",
-    "main.efeb8a00.css.map": "/zeon_project_3/static/css/main.efeb8a00.css.map",
-    "main.53bd2161.js.map": "/zeon_project_3/static/js/main.53bd2161.js.map",
+    "main.70ea934e.css.map": "/zeon_project_3/static/css/main.70ea934e.css.map",
+    "main.413a8d7e.js.map": "/zeon_project_3/static/js/main.413a8d7e.js.map",
     "787.29c7b148.chunk.js.map": "/zeon_project_3/static/js/787.29c7b148.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.efeb8a00.css",
-    "static/js/main.53bd2161.js"
+    "static/css/main.70ea934e.css",
+    "static/js/main.413a8d7e.js"
   ]
 }
