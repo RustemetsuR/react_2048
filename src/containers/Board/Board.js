@@ -21,18 +21,24 @@ const Board = () => {
         [0, 0, 0, 0]
     ];
 
-    const allowedKeys = [" ", "enter", "r", "w", "a", "s", "d", "arrowup", "arrowleft", "arrowdown", "arrowright"]
+    const allowedKeys = ["r", "w", "a", "s", "d", "arrowup", "arrowleft", "arrowdown", "arrowright"]
 
     const [board, setBoard] = useState(emptyBoard);
     const [deg, setDeg] = useState(0 - 360);
-    const [modal, setModal] = useState(false);
     const [isWin, setIsWin] = useState("lose");
-    const [activeKeyboard, setActiveBoard] = useState(true);
-    const score = useRef(0)
-    const [bestScore, setBestScore] = useState(localStorage.getItem("bestScore") ? localStorage.getItem("bestScore") : 0);
+    const modal = useRef(false);
+    const activeBoard = useRef(true);
+    const score = useRef(0);
+
+    const localStorageScore = localStorage.getItem("bestScore");
+
+    const [bestScore, setBestScore] = useState(localStorageScore ? localStorageScore : 0);
 
     const swipeHandlers = useSwipeable({
         onSwiped: (eventData) => {
+            if (!activeBoard.current) {
+                return;
+            }
             const newBoard = [...board];
             const oldBoard = newBoard.map(item => ([...item]));
             let newScore = 0;
@@ -48,7 +54,7 @@ const Board = () => {
 
             const newStateScore = score.current + newScore;
             score.current = newStateScore;
-            
+
             if (newStateScore > localStorage.getItem("bestScore", newStateScore)) {
                 setBestScore(newStateScore);
                 localStorage.setItem("bestScore", newStateScore);
@@ -71,52 +77,60 @@ const Board = () => {
     }, []);
 
     const moveTiles = event => {
-        if (activeKeyboard === true) {
-            const key = event.key.toLowerCase();
-            if (allowedKeys.includes(key)) {
-                let newScore;
-                const newBoard = [...board];
-                const oldBoard = newBoard.map(item => ([...item]));
-                if (key === "r" || key === " " || key === "enter") {
-                    restart();
-                } else {
-                    if (key === "w" || key === "arrowup") {
-                        newScore = onClickUp(newBoard);
-                    } else if (key === "a" || key === "arrowleft") {
-                        newScore = onClickLeft(newBoard);
-                    } else if (key === "s" || key === "arrowdown") {
-                        newScore = onClickDown(newBoard);
-                    } else if (key === "d" || key === "arrowright") {
-                        newScore = onClickRight(newBoard);
-                    }
 
-                        const newStateScore = score.current + newScore;
-                        score.current = newStateScore;
+        if (!activeBoard.current && modal.current) {
+            return;
+        }
 
-                        if (newStateScore > localStorage.getItem("bestScore", newStateScore)) {
-                            setBestScore(newStateScore);
-                            localStorage.setItem("bestScore", newStateScore);
-                        }
-                    
 
-                    setBoard(newBoard);
-                    if (!equals(board, oldBoard)) {
-                        spawnNumber();
-                    }
-                }
-                ifWinOrLose();
+        const key = event.key.toLowerCase();
+        if (!allowedKeys.includes(key)) {
+            return;
+        }
+
+        let newScore;
+        const newBoard = [...board];
+        const oldBoard = newBoard.map(item => ([...item]));
+        if (key === "r") {
+            restart();
+        } else {
+            if (key === "w" || key === "arrowup") {
+                newScore = onClickUp(newBoard);
+            } else if (key === "a" || key === "arrowleft") {
+                newScore = onClickLeft(newBoard);
+            } else if (key === "s" || key === "arrowdown") {
+                newScore = onClickDown(newBoard);
+            } else if (key === "d" || key === "arrowright") {
+                newScore = onClickRight(newBoard);
+            }
+
+            const newStateScore = score.current + newScore;
+            score.current = newStateScore;
+
+            if (newStateScore > localStorage.getItem("bestScore", newStateScore)) {
+                setBestScore(newStateScore);
+                localStorage.setItem("bestScore", newStateScore);
+            }
+
+            setBoard(newBoard);
+            if (!equals(board, oldBoard)) {
+                spawnNumber();
             }
         }
+        ifWinOrLose();
+
+
     }
 
     const ifWinOrLose = () => {
-        board.map(row => {
-            row.map(el => {
+        board.forEach((row) => {
+            row.forEach((el) => {
                 if (el === 2048) {
                     popUpModal("win");
+                    return;
                 }
             })
-        });
+        })
 
         const testBoardUp = board.map(item => ([...item]));
         const testBoardDown = testBoardUp;
@@ -148,17 +162,15 @@ const Board = () => {
     }
 
     const popUpModal = (isWin) => {
-        setActiveBoard(false);
+        activeBoard.current = false;
         setIsWin(isWin);
-        setTimeout(() => {
-            setModal(true);
-        }, 1000);
+        modal.current = true;
     }
 
     const restart = () => {
-        setActiveBoard(true);
+        activeBoard.current = true;
         initializeBoard();
-        setModal(false);
+        modal.current = false;
         score.current = 0;
     }
 
@@ -203,10 +215,14 @@ const Board = () => {
         <div className="board-block">
             <Container>
                 <div className="board-block__inner">
-                    <BoardInterface score={score.current} bestScore={bestScore} deg={deg} onClick={() => {
-                        setDeg(deg - 360);
-                        restart();
-                    }} />
+                    <BoardInterface
+                        score={score.current}
+                        bestScore={bestScore}
+                        deg={deg}
+                        onClick={() => {
+                            setDeg(deg - 360);
+                            restart();
+                        }} />
 
                     <div className="board-game" {...swipeHandlers}>
                         {board.map((boardElement, boardIndex) => {
@@ -221,7 +237,13 @@ const Board = () => {
                                 })}
                             </div>
                         })}
-                        <Modal modal={modal} onClick={() => restart()} gameResults={isWin} />
+                        <Modal
+                            modal={modal.current}
+                            gameResults={isWin}
+                            onClick={() => {
+                                setDeg(deg - 360);
+                                restart();
+                            }} />
                     </div>
                 </div>
             </Container>
