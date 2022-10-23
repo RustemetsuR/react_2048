@@ -10,9 +10,12 @@
 
 .modal__inner {
     text-align: center;
-    height: 100%;
-    padding-top: 40%;
     transition: ease-in-out 1s all;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modal__title {
@@ -24,9 +27,17 @@
 }
 
 .modal__restart {
-    background: white;
+    background: #f6b94c;
+    color: white;
+    font-weight: bold;
     border: none;
     padding: 10px;
     border-radius: 6px;
     outline: none;
+}
+
+@media(max-width: 600px){
+    .modal__title{
+        font-size: 40px;
+    }
 }

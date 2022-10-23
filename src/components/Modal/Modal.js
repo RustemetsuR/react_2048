@@ -8,12 +8,13 @@ const Modal = props => {
             className="modal"
             style={{
                 opacity: !props.modal ? "0" : "1",
-                transition: "all .2s",
+                transition: "all 1s",
                 visibility: !props.modal ? "hidden" : "visible",
+               
             }}>
             <div className="modal__inner">
                 <h3 className="modal__title">
-                    {props.gameResults === "win" ? "You won!" : "Game over!"}
+                    {props.gameResults === "win" ? "You win!" : "Game over!"}
                 </h3>
 
                 <button className="modal__restart" onClick={props.onClick}>
