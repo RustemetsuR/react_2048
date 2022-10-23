@@ -13,7 +13,8 @@ const BoardInterface = props => {
                 <img
                     style={{ transform: "rotate(" + props.deg + "deg)" }}
                     className="board-interface__reset-img"
-                    src={require("../../svg/spin-svgrepo-com.svg").default} />
+                    src={require("../../svg/spin-svgrepo-com.svg").default} 
+                    alt="restart-icon"/>
             </button>
         </div>
     );
