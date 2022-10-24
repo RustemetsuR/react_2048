@@ -12,6 +12,7 @@
   border-radius: 4px;
   margin: 15px auto 0;
   position: relative;
+  touch-action: none;
 }
 
 .row-block {
